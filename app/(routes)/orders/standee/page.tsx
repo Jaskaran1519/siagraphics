@@ -1,63 +1,125 @@
 "use client";
+import Image from "next/image";
 import { useState, FormEvent } from "react";
 import { useCart } from "../../../context/CartContext";
+import FileUpload from "../../../components/FileUpload";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { generateMockup } from "../../../../utils/generateMockup";
 
 const StandeesOrder = () => {
-  const [dimensions, setDimensions] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
+  const [dimensions, setDimensions] = useState<string>("");
+  const [imageURL, setImageURL] = useState<string>("");
+  const [mockupURL, setMockupURL] = useState<string>(""); // State to store the mockup URL
   const { addToCart } = useCart();
+
+  const handleUpload = async (url: string) => {
+    setImageURL(url);
+    const mockupUrl = await generateMockup("standee", url); // Generate mockup URL
+    setMockupURL(mockupUrl);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!imageURL) {
+      alert("Please upload an image before submitting.");
+      return;
+    }
     const newOrder = {
       productType: "standee",
-      details: { dimensions, quantity },
+      details: { quantity, dimensions, imageURL, mockupURL }, // Include the mockup URL in the order details
     };
     addToCart(newOrder);
-    setDimensions("");
     setQuantity(1);
+    setDimensions("");
+    setImageURL("");
+    setMockupURL("");
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-5">Order Standees</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="dimensions" className="block mb-1">
-            Dimensions
-          </label>
-          <input
-            id="dimensions"
-            type="text"
-            placeholder="Dimensions"
-            value={dimensions}
-            onChange={(e) => setDimensions(e.target.value)}
-            className="w-full px-3 py-2 border rounded"
-            required
-          />
+    <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
+      <div className="grid gap-4 md:gap-10 items-start">
+        <div className="grid gap-4">
+          {mockupURL ? ( // Display the mockup if available
+            <Image
+              src={mockupURL}
+              alt="Mockup Image"
+              width={600}
+              height={900}
+              className="aspect-[4/4] object-cover border w-full rounded-lg overflow-hidden"
+            />
+          ) : (
+            <img
+              src="/placeholder.svg"
+              alt="Product Image"
+              width={600}
+              height={900}
+              className="aspect-[4/4] object-cover border w-full rounded-lg overflow-hidden"
+            />
+          )}
         </div>
-        <div>
-          <label htmlFor="quantity" className="block mb-1">
-            Quantity
-          </label>
-          <input
-            id="quantity"
-            type="number"
-            placeholder="Quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            className="w-full px-3 py-2 border rounded"
-            required
-            min="1"
-          />
+      </div>
+      <div className="grid gap-4 md:gap-10 items-start">
+        <div className="grid gap-4">
+          <h1 className="font-bold text-3xl lg:text-4xl">Order Standees</h1>
+          <div className="flex items-center gap-4">
+            <div className="text-4xl font-bold">$24.99 each</div>
+          </div>
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          Add to Cart
-        </button>
-      </form>
+        <form onSubmit={handleSubmit} className="grid gap-4 md:gap-10">
+          <div className="grid gap-2">
+            <Label htmlFor="dimensions" className="text-base">
+              Dimensions
+            </Label>
+            <input
+              id="dimensions"
+              type="text"
+              placeholder="Dimensions"
+              value={dimensions}
+              onChange={(e) => setDimensions(e.target.value)}
+              className="w-full px-3 py-2 border rounded"
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="quantity" className="text-base">
+              Quantity
+            </Label>
+            <Select
+              onValueChange={(value) => setQuantity(Number(value))}
+              defaultValue="1"
+            >
+              <SelectTrigger className="w-24">
+                <SelectValue placeholder="Select" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">1</SelectItem>
+                <SelectItem value="2">2</SelectItem>
+                <SelectItem value="3">3</SelectItem>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="5">5</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="upload" className="text-base">
+              Upload Image
+            </Label>
+            <FileUpload onUpload={handleUpload} />
+          </div>
+          <Button size="lg" type="submit">
+            Add to cart
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,13 @@
-import Link from "next/link";
+import HeroPhotos from "./components/hero/HeroPhotos";
+import Herotext from "./components/hero/Herotext";
 
 const HomePage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Herotext />
+      <HeroPhotos />
+    </div>
+  );
 };
 
 export default HomePage;

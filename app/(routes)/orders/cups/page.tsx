@@ -1,105 +1,136 @@
 "use client";
+import Image from "next/image";
 import { useState, FormEvent } from "react";
 import { useCart } from "../../../context/CartContext";
+import FileUpload from "../../../components/FileUpload";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 const CupsOrder = () => {
-  const [size, setSize] = useState<string>("");
-  const [color, setColor] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
-  const [message, setMessage] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [dimensions, setDimensions] = useState<string>("");
+  const [imageURL, setImageURL] = useState<string>("");
   const { addToCart } = useCart();
+
+  const handleUpload = (url: string) => {
+    setImageURL(url);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setMessage("");
-    setIsLoading(true);
-    try {
-      const cupOrder = {
-        productType: "cup",
-        details: { size, color, quantity },
-      };
-
-      // Add the order to the cart
-      addToCart(cupOrder);
-      setMessage("Cup order added to cart!");
-      setSize("");
-      setColor("");
-      setQuantity(1);
-    } catch (error) {
-      console.error("Error:", error);
-      setMessage("An unexpected error occurred. Please try again.");
-    } finally {
-      setIsLoading(false);
+    if (!imageURL) {
+      alert("Please upload an image before submitting.");
+      return;
     }
+    const newOrder = {
+      productType: "cups",
+      details: { quantity, dimensions, imageURL },
+    };
+    addToCart(newOrder);
+    setQuantity(1);
+    setDimensions("");
+    setImageURL("");
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-5">Order Cup</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="size" className="block mb-1">
-            Size
-          </label>
-          <input
-            id="size"
-            type="text"
-            placeholder="Size"
-            value={size}
-            onChange={(e) => setSize(e.target.value)}
-            className="w-full px-3 py-2 border rounded"
-            required
+    <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
+      <div className="grid gap-4 md:gap-10 items-start">
+        <div className="grid gap-4 relative">
+          {/* {imageURL ? (
+            <Image
+              src={imageURL}
+              alt="Uploaded Image"
+              width={600}
+              height={900}
+              className="aspect-[4/4] object-cover border w-full rounded-lg overflow-hidden"
+            />
+          ) : (
+            <Image
+              src="/placeholder.svg"
+              alt="Product Image"
+              width={600}
+              height={900}
+              className="aspect-[4/4] object-cover border w-full rounded-lg overflow-hidden"
+            />
+          )} */}
+          <Image
+            src="/orders/cup.jpg"
+            alt="Product Image"
+            width={600}
+            height={900}
+            className="aspect-[4/4] object-cover border w-full rounded-lg overflow-hidden"
           />
+          {imageURL ? (
+            <Image
+              src={imageURL}
+              alt="Uploaded Image"
+              width={200}
+              height={100}
+              className="aspect-[3/2] w-[35%] h-auto  border absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  rounded-lg overflow-hidden"
+            />
+          ) : null}
         </div>
-        <div>
-          <label htmlFor="color" className="block mb-1">
-            Color
-          </label>
-          <input
-            id="color"
-            type="text"
-            placeholder="Color"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-            className="w-full px-3 py-2 border rounded"
-            required
-          />
+      </div>
+      <div className="grid gap-4 md:gap-10 items-start">
+        <div className="grid gap-4">
+          <h1 className="font-bold text-3xl lg:text-4xl">Printed Cups</h1>
+          <div className="flex items-center gap-4">
+            <div className="text-4xl font-bold">$7.99 each</div>
+          </div>
         </div>
-        <div>
-          <label htmlFor="quantity" className="block mb-1">
-            Quantity
-          </label>
-          <input
-            id="quantity"
-            type="number"
-            placeholder="Quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            className="w-full px-3 py-2 border rounded"
-            required
-            min="1"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:bg-blue-300"
-          disabled={isLoading}
-        >
-          {isLoading ? "Submitting..." : "Add to Cart"}
-        </button>
-      </form>
-      {message && (
-        <p
-          className={`mt-4 p-2 ${
-            message.includes("Error")
-              ? "bg-red-100 text-red-700"
-              : "bg-green-100 text-green-700"
-          }`}
-        >
-          {message}
-        </p>
-      )}
+        <form onSubmit={handleSubmit} className="grid gap-4 md:gap-10">
+          <div className="grid gap-2">
+            <Label htmlFor="dimensions" className="text-base">
+              Dimensions
+            </Label>
+            <input
+              id="dimensions"
+              type="text"
+              placeholder="Dimensions"
+              value={dimensions}
+              onChange={(e) => setDimensions(e.target.value)}
+              className="w-full px-3 py-2 border rounded"
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="quantity" className="text-base">
+              Quantity
+            </Label>
+            <Select
+              onValueChange={(value) => setQuantity(Number(value))}
+              defaultValue="1"
+            >
+              <SelectTrigger className="w-24">
+                <SelectValue placeholder="Select" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">1</SelectItem>
+                <SelectItem value="2">2</SelectItem>
+                <SelectItem value="3">3</SelectItem>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="5">5</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="upload" className="text-base">
+              Upload Image
+            </Label>
+            <FileUpload onUpload={handleUpload} />
+          </div>
+          <Button size="lg" type="submit">
+            Add to cart
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
