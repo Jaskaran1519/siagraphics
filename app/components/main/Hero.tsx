@@ -9,20 +9,20 @@ export function Hero() {
         <Header />
       </header> */}
       <section
-        className="relative h-screen bg-cover  bg-no-repeat"
+        className="relative h-screen bg-cover bg-right  bg-no-repeat"
         style={{
-          backgroundImage: 'url("/hero/bg.webp")',
-          filter: "brightness(0.9) ", // Adjust brightness and blur
+          backgroundImage: 'url("/newbg.webp")',
+          filter: "brightness(1) ", // Adjust brightness and blur
         }}
       >
         {/* <div className="absolute inset-0 bg-background/60 " />{" "} */}
         {/* Lighten the background */}
-        <div className="container h-full flex flex-col items-center  justify-center text-center space-y-6 px-4 md:px-6">
+        <div className="container h-full flex flex-col -mt-10 items-center  justify-center text-center space-y-6 px-4 md:px-6">
           <div className="max-w-3xl space-y-8">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-8xl">
+            <h1 className="text-6xl font-bold tracking-tight sm:text-5xl md:text-8xl">
               Sia Graphics
             </h1>
-            <p className="text-xl text-muted-foreground text-white">
+            <p className="text-xl text-muted-foreground font-semibold text-gray-700">
               "Empowering businesses to thrive in the digital age."
             </p>
           </div>
