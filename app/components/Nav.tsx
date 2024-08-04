@@ -19,33 +19,33 @@ import Image from "next/image";
 const components: { title: string; href: string; description: string }[] = [
   {
     title: "T-Shirts",
-    href: "/orders/tshirt",
+    href: "#",
     description: "Get custom printed tshirt service with unmatched quality",
   },
   {
     title: "Banners",
-    href: "/orders/banner",
+    href: "#",
     description: "Promotional or personal business banners for businesses",
   },
   {
     title: "Visiting Cards",
-    href: "/orders/visitingCard",
+    href: "#",
     description: "Premium crafted cards for both business and personal use",
   },
   {
     title: "Printed Cups",
-    href: "/orders/cups",
+    href: "#",
     description: "Printed coffee cups with the style you want",
   },
   {
     title: "Standees",
-    href: "/orders/standee",
+    href: "#",
     description:
       "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
   },
   {
     title: "Flyers",
-    href: "/orders/flyer",
+    href: "#",
     description:
       "Promote your brand with stunning flyers! Check out our flyer printing service for high-quality, vibrant prints that leave a lasting impression",
   },
