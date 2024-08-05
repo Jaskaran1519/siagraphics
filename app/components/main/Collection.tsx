@@ -11,7 +11,11 @@ interface CollectionItem {
 const collection: CollectionItem[] = [
   {
     name: "Stickers & Cards",
-    images: ["/logo.png", "/next.svg", "/logo.webp"],
+    images: [
+      "/collection/Cards/bcard.jpg",
+      "/collection/Cards/letterhead.jpg",
+      "/collection/Cards/sticker.jpg",
+    ],
     link: "#",
   },
   {
@@ -33,7 +37,13 @@ const collection: CollectionItem[] = [
   },
   {
     name: "Vynels",
-    images: ["/coming.jpeg"],
+    images: [
+      "/collection/Vynels/frost.jpg",
+      "/collection/Vynels/onewayvision.jpg",
+      "/collection/Vynels/standee.jpg",
+      "/collection/Vynels/sunboard.jpeg",
+      "/collection/Vynels/vynel.jpg",
+    ],
     link: "#",
   },
   {
@@ -71,7 +81,7 @@ const Collection: React.FC = () => {
           (prevIndex) =>
             (prevIndex + 1) % (collection[hoveredIndex]?.images.length || 1)
         );
-      }, 1500);
+      }, 1000);
     }
     return () => {
       if (interval) clearInterval(interval);
@@ -82,7 +92,9 @@ const Collection: React.FC = () => {
     <div className="w-[90%] mx-auto h-auto">
       <div className="flex flex-col justify-center items-center my-10 space-y-3">
         <h1 className="text-4xl font-semibold">Our Collection</h1>
-        <h2>Explore Our Whole Collection Of Printables</h2>
+        <h2 className="text-center">
+          Explore Our Whole Collection Of Printables
+        </h2>
       </div>
       <div className="w-full overflow-x-auto  sm:ml-0 md:max-w-[2100px] gap-10 flex h-auto md:overflow-hidden md:grid items-center md:grid-cols-2 lg:grid-cols-3 md:justify-center">
         {collection.map((item, index) => (

@@ -1,12 +1,20 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import Mobilemenu from "./Mobilemenu";
+
 import Nav from "./Nav";
-import { Info, ShoppingBagIcon } from "lucide-react";
+import { Info, Menu, ShoppingBagIcon, User } from "lucide-react";
 import Link from "next/link";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,19 +33,31 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full  max-w-[2000px]  z-50 flex justify-between items-center py-3 px-[5vw] fixed top-0 left-1/2 transform -translate-x-1/2 transition-colors duration-300 ${
-        scrolled ? "bg-white bg-opacity-20 backdrop-blur-md" : "bg-transparent"
-      }`}
+      className={`w-full  max-w-[2000px] bg-black  z-50 flex justify-between items-center py-3 px-[5vw] fixed top-0 left-1/2 transform -translate-x-1/2 transition-colors duration-300 
+        `}
     >
-      <Image src="/logo.webp" width={50} height={50} alt="/" />
-      <div className="hidden sm:block">
-        <Nav />
+      <div className="flex items-center gap-5">
+        <Mobilemenu />
+        <div className="hidden sm:block">
+          <Nav />
+        </div>
       </div>
-      <div className="flex gap-6 items-center">
+      <Image
+        src="/whitelogo.png"
+        width={45}
+        height={45}
+        alt="/"
+        className="hidden md:block"
+      />
+
+      <div className="flex  gap-6 items-center pl-5">
+        <Input type="email" placeholder="Search here" />
         <Link href="/cart">
-          <ShoppingBagIcon />
+          <ShoppingBagIcon className="text-white " />
         </Link>
-        <Info />
+        <Link href="/profile">
+          <User className="text-white" />
+        </Link>
       </div>
     </div>
   );

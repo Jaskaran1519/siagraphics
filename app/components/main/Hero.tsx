@@ -17,7 +17,7 @@ export function Hero() {
       >
         {/* <div className="absolute inset-0 bg-background/60 " />{" "} */}
         {/* Lighten the background */}
-        <div className="container h-full flex flex-col -mt-10 items-center  justify-center text-center space-y-6 px-4 md:px-6">
+        <div className="container h-full flex flex-col  items-center  justify-center text-center space-y-6 px-4 md:px-6">
           <div className="max-w-3xl space-y-8">
             <h1 className="text-6xl font-bold tracking-tight sm:text-5xl md:text-8xl">
               Sia Graphics
@@ -27,7 +27,7 @@ export function Hero() {
             </p>
           </div>
           <Button className="px-4 py-2 bg-black text-white hover:bg-gray-300 hover:text-black rounded-lg duration-300">
-            Explore Our Solutions
+            Shop Now
           </Button>
         </div>
       </section>

@@ -14,17 +14,17 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+    <div className="rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
       <div className="h-56 w-full">
         <a href="#">
           <img
-            className="mx-auto h-full"
+            className="mx-auto h-full bg-cover rounded-xl"
             src={product.image}
             alt={product.name}
           />
         </a>
       </div>
-      <div className="pt-6">
+      <div className="pt-2 pl-4">
         <div className="mb-4 flex items-center justify-between gap-4">
           <span className="me-2 rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800">
             Up to 35% off
@@ -84,7 +84,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         <a
           href="#"
-          className="text-lg font-semibold text-left leading-tight text-gray-900 hover:underline"
+          className="text-lg font-semibold  text-left leading-tight text-gray-900 hover:underline"
         >
           {product.name}
         </a>
@@ -142,7 +142,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <p className="text-sm font-medium text-gray-500">(455)</p>
         </div>
 
-        <ul className="mt-2 flex items-center gap-2">
+        <ul className="mt-0 flex items-center gap-2">
           <li className="text-base font-semibold text-gray-900">
             {product.price}
           </li>
@@ -154,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="mt-4 flex items-center justify-between">
           <button
             type="button"
-            className="inline-flex mx-auto items-center rounded-lg border border-transparent bg-gray-600 px-3 py-2 text-center text-sm font-medium leading-4 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className="inline-flex mx-auto items-center rounded-xl border border-transparent bg-gray-600 px-3 py-2 mb-2  text-center text-sm font-medium leading-4 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
             Add to Cart
           </button>
