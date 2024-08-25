@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import ProductCard from "./main/Productcard";
+import ProductCard from "./Productcard";
 
 interface Product {
   id: string;

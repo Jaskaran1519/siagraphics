@@ -1,77 +1,43 @@
+import { Lobster, Signika_Negative } from "next/font/google";
+import Header from "../header/Header";
+import { AuroraBackground } from "../../../components/magicui/Aurorabg";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import Header from "../Header";
+
+const heroFont = Lobster({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export function Hero() {
   return (
-    <div className="relative">
-      {/* <header className="fixed top-0 left-0 w-full z-10  ">
+    <div className="relative xl:h-screen">
+      <AuroraBackground>
         <Header />
-      </header> */}
-      <section
-        className="relative h-screen bg-cover bg-right  bg-no-repeat"
-        style={{
-          backgroundImage: 'url("/newbg.webp")',
-          filter: "brightness(1) ", // Adjust brightness and blur
-        }}
-      >
-        {/* <div className="absolute inset-0 bg-background/60 " />{" "} */}
-        {/* Lighten the background */}
-        <div className="container h-full flex flex-col  items-center  justify-center text-center space-y-6 px-4 md:px-6">
-          <div className="max-w-3xl space-y-8">
-            <h1 className="text-6xl font-bold tracking-tight sm:text-5xl md:text-8xl">
+        <div className="flex flex-col justify-center items-center h-full w-[90%] mx-auto z-20">
+          <div className="space-y-6 text-center mt-44 md:mt-44 xl:mt-0">
+            <h1
+              className={`${heroFont.className} text-white text-6xl md:text-6xl xl:text-[9rem] font-semibold`}
+            >
               Sia Graphics
             </h1>
-            <p className="text-xl text-muted-foreground font-semibold text-gray-700">
-              "Empowering businesses to thrive in the digital age."
-            </p>
+            <h2 className="text-gray-200 text-xl">
+              Take your printing game to the next level with Sia Graphics
+            </h2>
           </div>
-          <Button className="px-4 py-2 bg-black text-white hover:bg-gray-300 hover:text-black rounded-lg duration-300">
-            Shop Now
-          </Button>
+          <div className="flex justify-center items-center gap-5 mt-8 mb-44 xl:mb-0 z-20">
+            <Link href="/collection">
+              <button className="px-4 py-2 text-white border-[2px] border-gray-200 rounded-[1em] hover:bg-gray-200 hover:text-zinc-600 bg-transparent cursor-pointer duration-300">
+                Explore
+              </button>
+            </Link>
+            <button className="px-4 py-2 text-white border-[2px] border-gray-200 rounded-[1em] hover:bg-gray-200 hover:text-zinc-600 bg-transparent cursor-pointer duration-300">
+              About us
+            </button>
+          </div>
         </div>
-      </section>
+      </AuroraBackground>
     </div>
   );
 }
 
 export default Hero;
-
-function MountainIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-    </svg>
-  );
-}
-
-function XIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  );
-}

@@ -18,7 +18,7 @@ export function SheetDemo() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Menu className="text-white" />
+        <Menu className="text-white cursor-pointer" />
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

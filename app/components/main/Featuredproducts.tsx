@@ -2,7 +2,7 @@
 
 import React from "react";
 import ProductCard from "./Productcard";
-import CarouselDemo from "../CarouselDemo";
+import CarouselDemo from "./CarouselDemo";
 
 const FeaturedProducts = () => {
   const products = [

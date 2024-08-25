@@ -1,19 +1,43 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+import Lenis from "lenis";
 import Hero from "./components/main/Hero";
 import Movingtext from "./components/main/Movingtext";
-import Featuredproducts from "./components/main/Featuredproducts";
 import Collection from "./components/main/Collection";
-import Review from "./components/main/Review";
-const page = () => {
+import Reviewscroll from "./components/main/Reviewscroll";
+import Header from "./components/header/Header";
+import Pagecontent from "./components/main/introProjects/Pagecontent";
+
+const Page = () => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Cleanup Lenis instance when component unmounts
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <>
-      <Hero />
-      <Movingtext />
-      <Featuredproducts />
-      <Collection />
-      <Review />
+      <div ref={containerRef} className=" ">
+        <Hero />
+        <Movingtext />
+        <Pagecontent />
+        <Collection />
+        <Reviewscroll />
+      </div>
     </>
   );
 };
 
-export default page;
+export default Page;

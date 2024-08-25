@@ -89,10 +89,10 @@ const Collection: React.FC = () => {
   }, [hoveredIndex]);
 
   return (
-    <div className="w-[90%] mx-auto h-auto">
+    <div className="w-[90%] mb-20 mx-auto h-auto">
       <div className="flex flex-col justify-center items-center my-10 space-y-3">
-        <h1 className="text-4xl font-semibold">Our Collection</h1>
-        <h2 className="text-center">
+        <h1 className="text-2xl md:text-4xl xl:text-6xl font-semibold">Our Collection</h1>
+        <h2 className="text-center text-md">
           Explore Our Whole Collection Of Printables
         </h2>
       </div>

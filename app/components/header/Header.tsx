@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import Mobilemenu from "./Mobilemenu";
-
+import Drawer from "../Drawer";
 import Nav from "./Nav";
 import { Info, Menu, ShoppingBagIcon, User } from "lucide-react";
 import Link from "next/link";
@@ -32,10 +32,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div
-      className={`w-full  max-w-[2000px] bg-black  z-50 flex justify-between items-center py-3 px-[5vw] fixed top-0 left-1/2 transform -translate-x-1/2 transition-colors duration-300 
-        `}
-    >
+    <div className="w-full  max-w-[2000px] bg-background  z-50 flex justify-between items-center py-3 px-[5vw] sticky  top-0  transition-colors duration-300 ">
       <div className="flex items-center gap-5">
         <Mobilemenu />
         <div className="hidden sm:block">
@@ -50,13 +47,11 @@ const Header = () => {
         className="hidden md:block"
       />
 
-      <div className="flex  gap-6 items-center pl-5">
+      <div className="flex  items-center md:gap-5 ">
         <Input type="email" placeholder="Search here" />
-        <Link href="/cart">
-          <ShoppingBagIcon className="text-white " />
-        </Link>
-        <Link href="/profile">
-          <User className="text-white" />
+        <Drawer />
+        <Link href="#">
+          <User className="text-white " />
         </Link>
       </div>
     </div>
