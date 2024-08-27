@@ -12,26 +12,28 @@ const collection: CollectionItem[] = [
   {
     name: "Stickers & Cards",
     images: [
-      "/collection/Cards/bcard.jpg",
-      "/collection/Cards/letterhead.jpg",
-      "/collection/Cards/sticker.jpg",
+      "/collection/Cards/bcards.png",
+      "/collection/Cards/letterhead.png",
+      "/collection/Cards/sticker.png",
+      "/collection/Cards/nfccards.png",
     ],
     link: "#",
   },
   {
     name: "Marketing Prints",
     images: [
-      "/collection/Marketing/flyer.jpg",
-      "/collection/Marketing/phampleys.jpg",
-      "/collection/Marketing/trifold.jpg",
+      "/collection/Marketing/flyer.png",
+      "/collection/Marketing/phampleys.png",
+      "/collection/Marketing/trifold.png",
+      "/collection/Marketing/brouchure.png",
     ],
     link: "#",
   },
   {
     name: "Banners",
     images: [
-      "/collection/Banners/banner.jpg",
-      "/collection/Banners/canvas.jpg",
+      "/collection/Banners/banner.png",
+      "/collection/Banners/canvas.png",
     ],
     link: "#",
   },
@@ -48,22 +50,34 @@ const collection: CollectionItem[] = [
   },
   {
     name: "Customised Printing",
-    images: ["/coming.jpeg"],
+    images: [
+      "/collection/Customised/tshirt.png",
+      "/collection/Customised/stickers.png",
+      "/collection/Customised/cup.png",
+      "/collection/Customised/bottle.png",
+      "/collection/Customised/mousepad.png",
+    ],
     link: "#",
   },
   {
     name: "Boards",
-    images: ["/coming.jpeg"],
+    images: [
+      "/collection/Boards/noparking.png",
+      "/collection/Boards/kiteshape.png",
+    ],
     link: "#",
   },
   {
     name: "Acrylic Board & Neon",
-    images: ["/coming.jpeg"],
+    images: ["/collection/Acrylic/acrylic.png", "/collection/Acrylic/neon.png"],
     link: "#",
   },
   {
     name: "Lollipop & Canopy Board",
-    images: ["/coming.jpeg"],
+    images: [
+      "/collection/Lolipop/canopy.png",
+      "/collection/Lolipop/lolipop.png",
+    ],
     link: "#",
   },
 ];
@@ -91,7 +105,9 @@ const Collection: React.FC = () => {
   return (
     <div className="w-[90%] mb-20 mx-auto h-auto">
       <div className="flex flex-col justify-center items-center my-10 space-y-3">
-        <h1 className="text-2xl md:text-4xl xl:text-6xl font-semibold">Our Collection</h1>
+        <h1 className="text-2xl md:text-4xl xl:text-6xl font-semibold">
+          Our Collection
+        </h1>
         <h2 className="text-center text-md">
           Explore Our Whole Collection Of Printables
         </h2>
@@ -106,14 +122,15 @@ const Collection: React.FC = () => {
               setHoveredIndex(null);
               setCurrentImageIndex(0);
             }}
-            className="w-60 h-56 md:w-full border border-gray-300 relative md:h-72 rounded-3xl flex-shrink-0 md:flex-shrink overflow-hidden"
+            className="w-60 h-56 md:w-full border-[3px] bg-gray-300 border-white outline-[2px] outline-gray-300 relative md:h-72 rounded-3xl flex-shrink-0 md:flex-shrink overflow-hidden"
             style={{
               backgroundImage: `url(${
                 item.images[hoveredIndex === index ? currentImageIndex : 0] ||
                 ""
               })`,
-              backgroundSize: "cover",
+              backgroundSize: "70%",
               backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
               transition: "background-image 0.5s ease-in-out",
             }}
           >
