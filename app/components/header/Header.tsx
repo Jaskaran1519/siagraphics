@@ -5,12 +5,14 @@ import { Input } from "@/components/ui/input";
 import Mobilemenu from "./Mobilemenu";
 import Drawer from "../Drawer";
 import Nav from "./Nav";
-import { Info, Menu, ShoppingBagIcon, User } from "lucide-react";
+import { User } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -31,8 +33,14 @@ const Header = () => {
     };
   }, []);
 
+  const isHomePage = pathname === "/";
+
   return (
-    <div className="w-full  max-w-[2000px] bg-background  z-50 flex justify-between items-center py-3 px-[5vw] sticky  top-0  transition-colors duration-300 ">
+    <div
+      className={`w-full max-w-[2000px] ${
+        isHomePage ? "bg-background" : "bg-black bg-opacity-65 backdrop-blur-md"
+      } z-50 flex justify-between items-center py-3 px-[5vw] sticky top-0 transition-colors duration-300`}
+    >
       <div className="flex items-center gap-5">
         <Mobilemenu />
         <div className="hidden sm:block">
@@ -46,12 +54,11 @@ const Header = () => {
         alt="/"
         className="hidden md:block"
       />
-
-      <div className="flex  items-center md:gap-5 ">
+      <div className="flex items-center md:gap-5">
         <Input type="email" placeholder="Search here" />
         <Drawer />
         <Link href="#">
-          <User className="text-white " />
+          <User className="text-white" />
         </Link>
       </div>
     </div>

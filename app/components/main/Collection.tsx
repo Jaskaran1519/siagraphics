@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 
 interface CollectionItem {
   name: string;
+  category: string;
   images: string[];
   link: string;
 }
@@ -11,34 +12,38 @@ interface CollectionItem {
 const collection: CollectionItem[] = [
   {
     name: "Stickers & Cards",
+    category: "stickers-cards",
     images: [
       "/collection/Cards/bcards.webp",
       "/collection/Cards/letterhead.webp",
       "/collection/Cards/sticker.webp",
       "/collection/Cards/nfccards.webp",
     ],
-    link: "#",
+    link: "/collection/stickers-cards?variant=bcards",
   },
   {
     name: "Marketing Prints",
+    category: "marketing-prints",
     images: [
       "/collection/Marketing/flyer.webp",
       "/collection/Marketing/phampleys.webp",
       "/collection/Marketing/trifold.webp",
       "/collection/Marketing/brouchure.webp",
     ],
-    link: "#",
+    link: "/collection/marketing-prints?variant=flyer",
   },
   {
     name: "Banners",
+    category: "banners",
     images: [
       "/collection/Banners/banner.webp",
       "/collection/Banners/canvas.webp",
     ],
-    link: "#",
+    link: "/collection/banners?variant=banner",
   },
   {
     name: "Vynels",
+    category: "vynels-standee",
     images: [
       "/collection/Vynels/frost.webp",
       "/collection/Vynels/onewayvision.webp",
@@ -46,10 +51,11 @@ const collection: CollectionItem[] = [
       "/collection/Vynels/sunboard.webp",
       "/collection/Vynels/vynel.webp",
     ],
-    link: "#",
+    link: "/collection/vynels-standee?variant=frost",
   },
   {
     name: "Customised Printing",
+    category: "apparel",
     images: [
       "/collection/Apparel/tshirt.webp",
       "/collection/Apparel/stickers.webp",
@@ -57,31 +63,34 @@ const collection: CollectionItem[] = [
       "/collection/Apparel/bottle.webp",
       "/collection/Apparel/mousepad.webp",
     ],
-    link: "#",
+    link: "/collection/apparel?variant=tshirt",
   },
   {
     name: "Boards",
+    category: "boards",
     images: [
       "/collection/Boards/noparking.webp",
       "/collection/Boards/kiteshape.webp",
     ],
-    link: "#",
+    link: "/collection/boards?variant=noparking",
   },
   {
     name: "Acrylic Board & Neon",
+    category: "acrylic-neon",
     images: [
       "/collection/Acrylic/acrylic.webp",
       "/collection/Acrylic/neon.webp",
     ],
-    link: "#",
+    link: "/collection/acrylic-neon?variant=acrylic",
   },
   {
-    name: "Lollipop & Canopy Board",
+    name: "Lolipop & Canopy Board",
+    category: "lolipop-canopy",
     images: [
       "/collection/Lolipop/canopy.webp",
       "/collection/Lolipop/lolipop.webp",
     ],
-    link: "#",
+    link: "/collection/lolipop-canopy?variant=canopy",
   },
 ];
 
@@ -119,7 +128,13 @@ const Collection: React.FC = () => {
         {collection.map((item, index) => (
           <div
             key={index}
-            onClick={() => router.push(item.link)}
+            onClick={() => {
+              const defaultVariant =
+                item.images[0]?.split("/").pop()?.split(".")[0] || "";
+              router.push(
+                `/collection/${item.category}?variant=${defaultVariant}`
+              );
+            }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => {
               setHoveredIndex(null);
