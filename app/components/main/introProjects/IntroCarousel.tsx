@@ -61,7 +61,7 @@ export default function CircularDemo() {
     {
       name: "Printed Cups",
       price: 65,
-      img: "/introcarouselimages/1.png",
+      img: "/introcarouselimages/printedcup.png",
       colors: ["bg-red-500", "bg-green-600", "bg-black", "bg-white"],
     },
   ];

@@ -51,11 +51,11 @@ const collection: CollectionItem[] = [
   {
     name: "Customised Printing",
     images: [
-      "/collection/Customised/tshirt.png",
-      "/collection/Customised/stickers.png",
-      "/collection/Customised/cup.png",
-      "/collection/Customised/bottle.png",
-      "/collection/Customised/mousepad.png",
+      "/collection/Apparel/tshirt.png",
+      "/collection/Apparel/stickers.png",
+      "/collection/Apparel/cup.png",
+      "/collection/Apparel/bottle.png",
+      "/collection/Apparel/mousepad.png",
     ],
     link: "#",
   },
