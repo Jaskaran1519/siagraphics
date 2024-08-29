@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Breadcrumb from "../_components/Breadcrumb";
 
 // Example data structure for products
 const productData: Record<
@@ -231,15 +232,25 @@ const CategoryPage = () => {
 
   return (
     <div className="w-[90%] mx-auto h-auto bg-background text-foreground flex flex-col">
-      <main className="flex-1 container mx-auto py-12 px-4 md:px-6 lg:px-8 my-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-20">
-          <div className="bg-gray-300 aspect-square min-h-[40vh] md:max-w-[40vw] md:h-auto rounded-2xl overflow-hidden relative md:sticky top-0">
+      <main className="flex-1 container mx-auto py-3 px-4 md:px-6 lg:px-8 my-5">
+        <Breadcrumb />
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-20">
+          <div
+            style={{
+              backgroundImage:
+                "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              transform: "rotate(90deg)",
+            }}
+            className=" aspect-square min-h-[40vh] md:max-w-[40vw] md:h-auto rounded-2xl overflow-hidden relative md:sticky top-20"
+          >
             <img
               src={currentProduct.image}
               alt={currentProduct.name}
               width={500}
               height={500}
-              className="w-[90%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+              className="w-[90%] -rotate-90 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
             />
           </div>
           <div className="space-y-6">
@@ -318,7 +329,7 @@ const CategoryPage = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="rounded-[1vh] bg-zinc-800 text-white"
+                  className="rounded-[1vh] bg-primary text-white"
                 >
                   Upload
                 </Button>
@@ -329,7 +340,8 @@ const CategoryPage = () => {
             <div className="flex gap-4">
               <Button
                 size="lg"
-                className="flex-1 bg-zinc-900 text-white rounded-xl hover:bg-zinc-600"
+                variant="outline"
+                className="flex-1 bg-primary text-white rounded-xl hover:bg-background hover:text-black "
               >
                 Add to Cart
               </Button>
