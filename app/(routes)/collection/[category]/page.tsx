@@ -233,13 +233,13 @@ const CategoryPage = () => {
     <div className="w-[90%] mx-auto h-auto bg-background text-foreground flex flex-col">
       <main className="flex-1 container mx-auto py-12 px-4 md:px-6 lg:px-8 my-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-20">
-          <div className="bg-gray-300 rounded-2xl overflow-hidden sticky top-0">
+          <div className="bg-gray-300 aspect-square min-h-[40vh] md:max-w-[40vw] md:h-auto rounded-2xl overflow-hidden relative md:sticky top-0">
             <img
               src={currentProduct.image}
               alt={currentProduct.name}
               width={500}
               height={500}
-              className="w-[90%] h-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+              className="w-[90%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
             />
           </div>
           <div className="space-y-6">
